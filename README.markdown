@@ -1,3 +1,3 @@
-= Object Oriented C Programming
+# Object Oriented C Programming
 
 Yes, it can be done.
