@@ -26,7 +26,7 @@ family of tools for this simple code.
 
 Long story short, the usual should make it all happen:
 
- $ ./configure
- $ make 
+    $ ./configure
+    $ make 
 
-You should find the simplest example bin/snafu
+You should find the simplest example here `bin/snafu`
