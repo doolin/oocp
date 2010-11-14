@@ -21,7 +21,7 @@ to start with getting the build system right.
 Over the years, building c code has become much easier, as the build
 tools have become more refined.  
 
-We're using the (automake)[http://www.gnu.org/software/automake/] 
+We're using the [automake](http://www.gnu.org/software/automake/ "GNU Automake") 
 family of tools for this simple code.
 
 Long story short, the usual should make it all happen:
