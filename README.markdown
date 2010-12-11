@@ -79,4 +79,26 @@ Once in a while, you may find something that has a
 circular dependency.  In that rare case, prototype
 as usual.
 
+## Compiling a module as standalone program
+
+There are times when it's useful to compile a module as 
+a program which can run by itself, but also as a part
+of a library.
+
+One way to do that is to wrap a `main()`  function
+at the bottom of the `mymod.c` file like so:
+
+    #ifdef mymod_STANDALONE
+    int
+    main(int argc, char ** argv) {
+       return 0;
+    }
+#endif /* mymod_STANDALONE */
+
+
+The key to this is adding `-D$*_STANDALONE` to your compiler
+command. 
+
+Read more about make's 
+[automatic variables](http://www.gnu.org/software/make/manual/make.html#Automatic-Variables).
 
