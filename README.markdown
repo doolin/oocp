@@ -56,6 +56,7 @@ don't match.
 It looks like this (from prototrick.c): 
 
 ~~~~~
+
 #include <stdio.h>
 
 void 
