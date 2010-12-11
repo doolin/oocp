@@ -93,7 +93,7 @@ at the bottom of the `mymod.c` file like so:
     main(int argc, char ** argv) {
        return 0;
     }
-#endif /* mymod_STANDALONE */
+    #endif /* mymod_STANDALONE */
 
 
 The key to this is adding `-D$*_STANDALONE` to your compiler
