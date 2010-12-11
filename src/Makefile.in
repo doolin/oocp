@@ -30,7 +30,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = snafu$(EXEEXT)
+bin_PROGRAMS = snafu$(EXEEXT) prototrick$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -43,6 +43,9 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am_prototrick_OBJECTS = prototrick.$(OBJEXT)
+prototrick_OBJECTS = $(am_prototrick_OBJECTS)
+prototrick_LDADD = $(LDADD)
 am_snafu_OBJECTS = snafu.$(OBJEXT)
 snafu_OBJECTS = $(am_snafu_OBJECTS)
 snafu_LDADD = $(LDADD)
@@ -53,8 +56,8 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(snafu_SOURCES)
-DIST_SOURCES = $(snafu_SOURCES)
+SOURCES = $(prototrick_SOURCES) $(snafu_SOURCES)
+DIST_SOURCES = $(prototrick_SOURCES) $(snafu_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -140,7 +143,8 @@ target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 snafu_SOURCES = snafu.c
-AM_CPPFLAGS = -I../include
+prototrick_SOURCES = prototrick.c
+AM_CPPFLAGS = -I../include -Wall -pedantic
 all: all-am
 
 .SUFFIXES:
@@ -197,6 +201,9 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+prototrick$(EXEEXT): $(prototrick_OBJECTS) $(prototrick_DEPENDENCIES) 
+	@rm -f prototrick$(EXEEXT)
+	$(LINK) $(prototrick_OBJECTS) $(prototrick_LDADD) $(LIBS)
 snafu$(EXEEXT): $(snafu_OBJECTS) $(snafu_DEPENDENCIES) 
 	@rm -f snafu$(EXEEXT)
 	$(LINK) $(snafu_OBJECTS) $(snafu_LDADD) $(LIBS)
@@ -207,6 +214,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/prototrick.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/snafu.Po@am__quote@
 
 .c.o:

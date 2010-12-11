@@ -1,6 +1,7 @@
 
 
-bin_PROGRAMS = snafu
+bin_PROGRAMS = snafu prototrick
 snafu_SOURCES = snafu.c
-AM_CPPFLAGS = -I../include
+prototrick_SOURCES = prototrick.c
+AM_CPPFLAGS = -I../include -Wall -pedantic
 
