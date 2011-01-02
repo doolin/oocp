@@ -30,7 +30,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = snafu$(EXEEXT) prototrick$(EXEEXT)
+bin_PROGRAMS = snafu$(EXEEXT) prototrick$(EXEEXT) \
+	simple_inheritance$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -46,6 +47,9 @@ PROGRAMS = $(bin_PROGRAMS)
 am_prototrick_OBJECTS = prototrick.$(OBJEXT)
 prototrick_OBJECTS = $(am_prototrick_OBJECTS)
 prototrick_LDADD = $(LDADD)
+am_simple_inheritance_OBJECTS = simple_inheritance.$(OBJEXT)
+simple_inheritance_OBJECTS = $(am_simple_inheritance_OBJECTS)
+simple_inheritance_LDADD = $(LDADD)
 am_snafu_OBJECTS = snafu.$(OBJEXT)
 snafu_OBJECTS = $(am_snafu_OBJECTS)
 snafu_LDADD = $(LDADD)
@@ -56,8 +60,10 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(prototrick_SOURCES) $(snafu_SOURCES)
-DIST_SOURCES = $(prototrick_SOURCES) $(snafu_SOURCES)
+SOURCES = $(prototrick_SOURCES) $(simple_inheritance_SOURCES) \
+	$(snafu_SOURCES)
+DIST_SOURCES = $(prototrick_SOURCES) $(simple_inheritance_SOURCES) \
+	$(snafu_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -144,6 +150,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 snafu_SOURCES = snafu.c
 prototrick_SOURCES = prototrick.c
+simple_inheritance_SOURCES = simple_inheritance.c
 AM_CPPFLAGS = -I../include -Wall -pedantic
 all: all-am
 
@@ -204,6 +211,9 @@ clean-binPROGRAMS:
 prototrick$(EXEEXT): $(prototrick_OBJECTS) $(prototrick_DEPENDENCIES) 
 	@rm -f prototrick$(EXEEXT)
 	$(LINK) $(prototrick_OBJECTS) $(prototrick_LDADD) $(LIBS)
+simple_inheritance$(EXEEXT): $(simple_inheritance_OBJECTS) $(simple_inheritance_DEPENDENCIES) 
+	@rm -f simple_inheritance$(EXEEXT)
+	$(LINK) $(simple_inheritance_OBJECTS) $(simple_inheritance_LDADD) $(LIBS)
 snafu$(EXEEXT): $(snafu_OBJECTS) $(snafu_DEPENDENCIES) 
 	@rm -f snafu$(EXEEXT)
 	$(LINK) $(snafu_OBJECTS) $(snafu_LDADD) $(LIBS)
@@ -215,6 +225,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/prototrick.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/simple_inheritance.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/snafu.Po@am__quote@
 
 .c.o:

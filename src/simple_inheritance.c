@@ -20,14 +20,9 @@ print_foo(Object * o) {
 int
 main (int argc, char ** argv) {
 
-
   Thing t;
-  
   t.o.foo = 1;
-
   printf("t.o.foo: %d\n", t.o.foo);
-
   print_foo(&t.o);
-
   return 0;
 }
