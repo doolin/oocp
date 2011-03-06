@@ -24,5 +24,6 @@ main (int argc, char ** argv) {
   t.o.foo = 1;
   printf("t.o.foo: %d\n", t.o.foo);
   print_foo(&t.o);
+  print_foo((Object *)&t);
   return 0;
 }
