@@ -1,6 +1,8 @@
 #include<stdio.h>
 
-// Use ~/DDA/modec/trunk/include/object.h
+
+typedef struct _object Object;
+
 
 #ifndef OOCP_PRINTFUNC
 typedef int  (*PrintFunc) (void* stream,
@@ -8,6 +10,7 @@ typedef int  (*PrintFunc) (void* stream,
                            ...); 
 #define OOCP_PRINTFUNC
 #endif 
+
 
 #ifndef OOCP_PRINTER 
 typedef void (*Printer)   (Object * o,
@@ -17,26 +20,32 @@ typedef void (*Printer)   (Object * o,
 #endif
 
 
-#define OBJECT_PRINT (p) ( (Object
+#define object_print(o,p,s)   ((Object*)o)->print ((Object*)o,(PrintFunc)p,s);
 
-typedef struct _object {
-  Printer printer;
-} Object;
+struct _object {
+  Printer print;
+};
 
 typedef struct _thing {
   Object o;
   int value;
 } Thing;
 
+void
+thing_printer(Object * o, PrintFunc print, void * stream) {
+
+  Thing * t = (Thing *)o;
+  print(stream, "Value from thing_printer: %d\n", t->value);
+}
+
 int
 main(int atgc, char ** argv) {
 
   Thing t;
-  t.o.printer = (PrintFunc)fprintf;
+  t.o.print = thing_printer;
   t.value = 1;
 
-  t.o.printer(stdout, "Value: %d\n",t.value);
-  
+  object_print(&t, fprintf, stdout);
 
   return 0;
 }
