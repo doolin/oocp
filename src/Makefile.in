@@ -31,7 +31,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 bin_PROGRAMS = snafu$(EXEEXT) prototrick$(EXEEXT) \
-	simple_inheritance$(EXEEXT) printer$(EXEEXT)
+	simple_inheritance$(EXEEXT) printer$(EXEEXT) painting$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -44,6 +44,9 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am_painting_OBJECTS = painting.$(OBJEXT)
+painting_OBJECTS = $(am_painting_OBJECTS)
+painting_LDADD = $(LDADD)
 am_printer_OBJECTS = printer.$(OBJEXT)
 printer_OBJECTS = $(am_printer_OBJECTS)
 printer_LDADD = $(LDADD)
@@ -63,10 +66,11 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(printer_SOURCES) $(prototrick_SOURCES) \
+SOURCES = $(painting_SOURCES) $(printer_SOURCES) $(prototrick_SOURCES) \
 	$(simple_inheritance_SOURCES) $(snafu_SOURCES)
-DIST_SOURCES = $(printer_SOURCES) $(prototrick_SOURCES) \
-	$(simple_inheritance_SOURCES) $(snafu_SOURCES)
+DIST_SOURCES = $(painting_SOURCES) $(printer_SOURCES) \
+	$(prototrick_SOURCES) $(simple_inheritance_SOURCES) \
+	$(snafu_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -155,7 +159,8 @@ snafu_SOURCES = snafu.c
 prototrick_SOURCES = prototrick.c
 simple_inheritance_SOURCES = simple_inheritance.c
 printer_SOURCES = printer.c
-AM_CPPFLAGS = -I../include -Wall -pedantic -Wno-comment
+painting_SOURCES = painting.c
+AM_CPPFLAGS = -I../include -Wall -pedantic -Wno-comment -D$*_STANDALONE
 all: all-am
 
 .SUFFIXES:
@@ -212,6 +217,9 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+painting$(EXEEXT): $(painting_OBJECTS) $(painting_DEPENDENCIES) 
+	@rm -f painting$(EXEEXT)
+	$(LINK) $(painting_OBJECTS) $(painting_LDADD) $(LIBS)
 printer$(EXEEXT): $(printer_OBJECTS) $(printer_DEPENDENCIES) 
 	@rm -f printer$(EXEEXT)
 	$(LINK) $(printer_OBJECTS) $(printer_LDADD) $(LIBS)
@@ -231,6 +239,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/painting.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/printer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/prototrick.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/simple_inheritance.Po@am__quote@
