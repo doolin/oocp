@@ -9,3 +9,5 @@ painting_SOURCES = painting.c
 
 AM_CPPFLAGS = -I../include -Wall -pedantic -Wno-comment -D$*_STANDALONE
 
+clean-local:
+	rm -rf *~

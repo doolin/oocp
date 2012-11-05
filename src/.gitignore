@@ -1,5 +1,8 @@
+.deps/*
 painting
 printer
 prototrick
 simple_inheritance
 snafu
+
+Makefile.in
