@@ -1,6 +1,6 @@
 /*
  * lns.c
- *  
+ *
  * Subroutine to determine whether two line segments
  * intersect.
  *
@@ -34,23 +34,23 @@ extern "C" {
  * dc10() and dc13(). w0 is the domain scale and 
  * scales the tolerance values.
  */
-int lns_old(double w0, 
+int lns_old(double w0,
             double x21, double x31, double x34, double x41,
-	         double y21, double y31, double y34, double y41, 
+	         double y21, double y31, double y34, double y41,
             double *pt1, double *pt2) {
 
    double c1;
 
-  /* determinants */   
-   double d0, d1, d2;  
+  /* determinants */
+   double d0, d1, d2;
 
   /* FIXME: What are these for? */
    double b1;
    double a1;
 
   /* kk3=0 no intersection.
-   * kk3=1 output t1 t2 parameters.  
-   */   
+   * kk3=1 output t1 t2 parameters
+   */
    int kk3 = 0;
 
   /* t1 and t2 are parameters in the equation of
@@ -68,19 +68,19 @@ int lns_old(double w0,
    d0 = x21*y34 - x34*y21;   /* equation | |   */
    d1 = x31*y34 - x34*y31;   /* | | for sol t1 */
    d2 = x21*y31 - x31*y21;   /* | | for sol t2 */
-     
+
   /* p1 p2 p3 p4  4 points co-line   */
    if ((fabs(d0) < (0.000000001*w0*w0)) && (fabs(d1) < (0.000000001*w0*w0))) {
       goto ln02;
    }
-     
+
   /* p1 p2   p3 p4  are two parallel lines */
    if ( fabs(d0) < (0.000000001*w0*w0) )  {
       goto ln01;  // ie, return;
    }
 
    goto ln03;
-      
+
 ln02:
 
   /* p1 p2 p3 p4  4 points in same line. */
@@ -92,7 +92,7 @@ ln02:
 
    a1=y21;
    b1=y31;
- 
+
 ln05:
 
   /* (x3 y3) lies in p1 p2 segment. */
@@ -103,7 +103,7 @@ ln05:
 
    t2=0;
    kk3 = 1;
-      
+
 ln04:
 
    a1=x21;
@@ -113,7 +113,7 @@ ln04:
    }
    a1=y21;
    b1=y41;
-   
+
 ln06:
   /* (x4 y4) lies in p1 p2 segment                  */
   /* both p3 p4   in p1 p2 segment no intersection  */
@@ -131,7 +131,7 @@ ln06:
 	   kk3 = 0;
    }
 
-   goto ln01;  
+   goto ln01;
 
 ln03:
 
@@ -154,7 +154,7 @@ ln01:
    *pt1 = t1;
    *pt2 = t2;
 
-   return kk3; 
+   return kk3;
 
 }
 
@@ -172,7 +172,7 @@ ln01:
  */
 int lns_new(double w0, 
             double j1x1, double j1y1, double j1x2, double j1y2,
-            double j2x1, double j2y1, double j2x2, double j2y2, 
+            double j2x1, double j2y1, double j2x2, double j2y2,
             double * pt1, double * pt2) {
 
    double c1;
@@ -227,19 +227,19 @@ int lns_new(double w0,
    d0 = x21*y34 - x34*y21;   /* equation | |   */
    d1 = x31*y34 - x34*y31;   /* | | for sol t1 */
    d2 = x21*y31 - x31*y21;   /* | | for sol t2 */
-     
+
   /* p1 p2 p3 p4  4 points co-line   */
    if ((fabs(d0) < (0.000000001*w0*w0)) && (fabs(d1) < (0.000000001*w0*w0))) {
       goto ln02;
    }
-    
+
   /* p1 p2   p3 p4  are two parallel lines */
    if ( fabs(d0) < (0.000000001*w0*w0) )  {
      goto ln01;  // ie, return;
    }
 
    goto ln03;
-      
+
 ln02:
 
   /* p1 p2 p3 p4  4 points in same line. */
@@ -262,7 +262,7 @@ ln05:
 
    t2=0;
    kk3 = 1;
-      
+
 ln04:
 
    a1=x21;
@@ -272,7 +272,7 @@ ln04:
    }
    a1=y21;
    b1=y41;
-   
+
 ln06:
   /* (x4 y4) lies in p1 p2 segment                  */
   /* both p3 p4   in p1 p2 segment no intersection  */
@@ -377,12 +377,12 @@ int lns_new_no_goto(double w0,
    d0 = x21*y34 - x34*y21;   /* equation | |   */
    d1 = x31*y34 - x34*y31;   /* | | for sol t1 */
    d2 = x21*y31 - x31*y21;   /* | | for sol t2 */
-     
+
 
 
   /* p1 p2 p3 p4  4 points co-line   */
    if ( ( fabs(d0) < (0.000000001*w0*w0) ) ) {
-      
+
       if ( fabs(d1) < (0.000000001*w0*w0) ) {
 
         /* p1 p2 p3 p4  4 points in same line. */
@@ -431,7 +431,7 @@ int lns_new_no_goto(double w0,
          return 0;
       }
    }
-    
+
 
   /* Normal intersection.  */
    t1 = d1/d0;
@@ -508,19 +508,19 @@ check_segment_overlap(double * t1, double * t2, double x21, double y21, double x
 }
 
 
-int 
+int
 lns_new_no_goto_no_t(double w0, 
                 double j1x1, double j1y1, double j1x2, double j1y2,
-                double j2x1, double j2y1, double j2x2, double j2y2, 
+                double j2x1, double j2y1, double j2x2, double j2y2,
                 double * t1, double * t2) {
 
 
-  /* determinants */   
-   double d0, d1, d2;  
+  /* determinants */
+   double d0, d1, d2;
 
   /* kk3=0 no intersection.
    * kk3=1 output t1 t2 parameters.  
-   */   
+   */
    int kk3 = 0;
 
    double x21, y21, x34, y34, x31, y31, x41, y41;
@@ -554,7 +554,7 @@ lns_new_no_goto_no_t(double w0,
 
   /* p1 p2 p3 p4  4 points co-line   */
    if ( ( fabs(d0) < (0.000000001*w0*w0) ) ) {
-      
+
       if ( fabs(d1) < (0.000000001*w0*w0) ) {
 
          return check_segment_overlap(t1,t2,x21,y21,x31,y31,x41,y41);
@@ -603,14 +603,14 @@ lns_new_no_goto_no_t(double w0,
 
          return kk3;
 #endif
-         
+
       } else {
 
         /* Parallel, no intersection. */
          return 0;
       }
    }
-    
+
 
   /* Normal intersection.  */
   *t1 = d1/d0;

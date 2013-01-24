@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 
-void 
+void
 foo(void) {
 
    printf("From foo...\n");
