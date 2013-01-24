@@ -29,3 +29,8 @@ tags
 TAGS
 *.o
 .deps
+Makefile.in
+config.h
+config.h.in
+configure
+aclocal.m4
