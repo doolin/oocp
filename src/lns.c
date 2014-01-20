@@ -10,6 +10,8 @@
  * $Revision: 1.13 $
  */
 
+// See also: http://en.wikipedia.org/wiki/Self-balancing_binary_search_tree#Applications
+
 #include <math.h>
 
 // This is brought in only for the __inlines.

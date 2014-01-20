@@ -4,7 +4,7 @@
 
 /** gcc -Wall -g stringalloc.c */
 
-char * 
+char *
 string_new(size_t size) {
 
   char * s = (char*)malloc(size);
@@ -14,7 +14,7 @@ string_new(size_t size) {
 
 void
 string_delete(char * s) {
-  
+
   // We don't have a size for s, 
   // so we stick a nastygram in 
   // it's first byte.
@@ -28,11 +28,11 @@ main(int argc, char ** argv) {
 
   char * s = string_new(10);
   string_delete(s);
- 
+
   return 0;
 }
 
-#if 0  
+#if 0
 If anything it doesn't go far enough.  This would be better:
 
 typedef struct _string {
@@ -79,4 +79,4 @@ It will work in principle.
 
 And do take the time to understand.  It will pay
 you back *huge* in the future.
-#endif  
+#endif

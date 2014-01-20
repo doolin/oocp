@@ -7,7 +7,7 @@ typedef struct _object Object;
 #ifndef OOCP_PRINTFUNC
 typedef int  (*PrintFunc) (void* stream,
                            const char * format,
-                           ...); 
+                           ...);
 #define OOCP_PRINTFUNC
 #endif 
 
