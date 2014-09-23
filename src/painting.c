@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -8,7 +6,7 @@
 
 struct _painting {
    uint32_t inventory_control;
-   uint32_t purchase_price; 
+   uint32_t purchase_price;
    char * painting_name;
    char * artist_name;
    char * owner_name;
@@ -30,11 +28,11 @@ painting_new(void) {
 void
 painting_delete(Painting * p) {
 
-   if (p->artist_name != NULL) free(p->artist_name);
-   if (p->painting_name != NULL) free(p->owner_name);
-   if (p->owner_name != NULL) free(p->painting_name); 
-   memset(p,0xdd,sizeof(Painting));
-   free(p);
+   //if (p->artist_name != NULL) free(p->artist_name);
+   //if (p->painting_name != NULL) free(p->owner_name);
+   //if (p->owner_name != NULL) free(p->painting_name);
+   //memset(p,0xdd,sizeof(Painting));
+   //free(p);
 }
 
 char *

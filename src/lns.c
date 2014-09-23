@@ -33,12 +33,12 @@ extern "C" {
 /* int: kk3, double: t1, t2;  double:d0, d1,d2, a1, b1 */
 /* lns determines whether lines defined by two point
  * sets intersect.  It is called by dc03(), dc04(),
- * dc10() and dc13(). w0 is the domain scale and 
+ * dc10() and dc13(). w0 is the domain scale and
  * scales the tolerance values.
  */
 int lns_old(double w0,
             double x21, double x31, double x34, double x41,
-	         double y21, double y31, double y34, double y41,
+            double y21, double y31, double y34, double y41,
             double *pt1, double *pt2) {
 
    double c1;
@@ -58,8 +58,8 @@ int lns_old(double w0,
   /* t1 and t2 are parameters in the equation of
    * two lines.  For line segments, 0 <= t1 <= 1
    * and 0 <= t2 <= 1.  These are given as t and T
-   * in GHS diss. page 181. or BSM page 148.  
-   * O'Rourke uses r and s as the parameters, which 
+   * in GHS diss. page 181. or BSM page 148.
+   * O'Rourke uses r and s as the parameters, which
    * is probably more standard.
    */
    double t1 = 0;
@@ -111,7 +111,7 @@ ln04:
    a1=x21;
    b1=x41;
    if ( fabs(x21) > fabs(y21) ) {
-	   goto ln06;
+     goto ln06;
    }
    a1=y21;
    b1=y41;
@@ -130,7 +130,7 @@ ln06:
 
    kk3 += 1;
    if (kk3 == 2) {
-	   kk3 = 0;
+     kk3 = 0;
    }
 
    goto ln01;
