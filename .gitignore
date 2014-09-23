@@ -35,3 +35,4 @@ config.h.in
 configure
 aclocal.m4
 stamp-h1
+*.gch
