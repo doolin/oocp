@@ -169,33 +169,33 @@ ln01:
 /* int: kk3, double: t1, t2;  double:d0, d1,d2, a1, b1 */
 /* lns determines whether lines defined by two point
  * sets intersect.  It is called by dc03(), dc04(),
- * dc10() and dc13(). w0 is the domain scale and 
+ * dc10() and dc13(). w0 is the domain scale and
  * scales the tolerance values.
  */
-int lns_new(double w0, 
+int lns_new(double w0,
             double j1x1, double j1y1, double j1x2, double j1y2,
             double j2x1, double j2y1, double j2x2, double j2y2,
             double * pt1, double * pt2) {
 
    double c1;
 
-  /* determinants */   
-   double d0, d1, d2;  
+  /* determinants */
+   double d0, d1, d2;
 
   /* FIXME: What are these for? */
    double b1;
    double a1;
 
   /* kk3=0 no intersection.
-   * kk3=1 output t1 t2 parameters.  
-   */   
+   * kk3=1 output t1 t2 parameters.
+   */
    int kk3 = 0;
 
   /* t1 and t2 are parameters in the equation of
    * two lines.  For line segments, 0 <= t1 <= 1
    * and 0 <= t2 <= 1.  These are given as t and T
-   * in GHS diss. page 181. or BSM page 148.  
-   * O'Rourke uses r and s as the parameters, which 
+   * in GHS diss. page 181. or BSM page 148.
+   * O'Rourke uses r and s as the parameters, which
    * is probably more standard.
    */
    double t1 = 0;
@@ -214,12 +214,12 @@ int lns_new(double w0,
    //y34 = joints[j][2] - joints[j][4]; /* coefficient a22 */
    y34 = j2y1 - j2y2;
 
-	//x31 = joints[j][1] - joints[i][1]; /* free terms  f1  */
+//x31 = joints[j][1] - joints[i][1]; /* free terms  f1  */
    x31 = j2x1 - j1x1;
    //y31 = joints[j][2] - joints[i][2]; /* free terms  f2  */
    y31 = j2y1 - j1y1;
 
-	//x41 = joints[j][3] - joints[i][1]; /* co-line case    */
+//x41 = joints[j][3] - joints[i][1]; /* co-line case    */
    x41 = j2x2 - j1x1;
    //y41 = joints[j][4] - joints[i][2];
    y41 = j2y2 - j1y1;
@@ -270,7 +270,7 @@ ln04:
    a1=x21;
    b1=x41;
    if ( fabs(x21) > fabs(y21) ) {
-	   goto ln06;
+    goto ln06;
    }
    a1=y21;
    b1=y41;
@@ -289,10 +289,10 @@ ln06:
 
    kk3 += 1;
    if (kk3 == 2) {
-	   kk3 = 0;
+     kk3 = 0;
    }
 
-   goto ln01;  
+   goto ln01;
 
 ln03:
 
@@ -315,7 +315,7 @@ ln01:
    *pt1 = t1;
    *pt2 = t2;
 
-   return kk3; 
+   return kk3;
 }
 
 
@@ -326,26 +326,26 @@ ln01:
 /* int: kk3, double: t1, t2;  double:d0, d1,d2, a1, b1 */
 /* lns determines whether lines defined by two point
  * sets intersect.  It is called by dc03(), dc04(),
- * dc10() and dc13(). w0 is the domain scale and 
+ * dc10() and dc13(). w0 is the domain scale and
  * scales the tolerance values.
  */
-int lns_new_no_goto(double w0, 
+int lns_new_no_goto(double w0,
                     double j1x1, double j1y1, double j1x2, double j1y2,
-                    double j2x1, double j2y1, double j2x2, double j2y2, 
+                    double j2x1, double j2y1, double j2x2, double j2y2,
                     double * pt1, double * pt2) {
 
    double c1;
 
-  /* determinants */   
-   double d0, d1, d2;  
+  /* determinants */
+   double d0, d1, d2;
 
   /* FIXME: What are these for? */
    double b1;
    double a1;
 
   /* kk3=0 no intersection.
-   * kk3=1 output t1 t2 parameters.  
-   */   
+   * kk3=1 output t1 t2 parameters.
+   */
    int kk3 = 0;
 
    double x21, y21, x34, y34, x31, y31, x41, y41;
@@ -353,8 +353,8 @@ int lns_new_no_goto(double w0,
   /* t1 and t2 are parameters in the equation of
    * two lines.  For line segments, 0 <= t1 <= 1
    * and 0 <= t2 <= 1.  These are given as t and T
-   * in GHS diss. page 181. or BSM page 148.  
-   * O'Rourke uses r and s as the parameters, which 
+   * in GHS diss. page 181. or BSM page 148.
+   * O'Rourke uses r and s as the parameters, which
    * is probably more standard.
    */
    double t1 = 0;
@@ -425,10 +425,10 @@ int lns_new_no_goto(double w0,
 
          kk3 += 1;
          if (kk3 == 2) {
-   	      kk3 = 0;
+           kk3 = 0;
          }
 
-         goto ln01;  
+         goto ln01;
       } else {
          return 0;
       }
@@ -454,7 +454,7 @@ ln01:
    *pt1 = t1;
    *pt2 = t2;
 
-   return kk3;  
+   return kk3;
 }
 
 
@@ -511,7 +511,7 @@ check_segment_overlap(double * t1, double * t2, double x21, double y21, double x
 
 
 int
-lns_new_no_goto_no_t(double w0, 
+lns_new_no_goto_no_t(double w0,
                 double j1x1, double j1y1, double j1x2, double j1y2,
                 double j2x1, double j2y1, double j2x2, double j2y2,
                 double * t1, double * t2) {
@@ -521,7 +521,7 @@ lns_new_no_goto_no_t(double w0,
    double d0, d1, d2;
 
   /* kk3=0 no intersection.
-   * kk3=1 output t1 t2 parameters.  
+   * kk3=1 output t1 t2 parameters.
    */
    int kk3 = 0;
 
@@ -530,8 +530,8 @@ lns_new_no_goto_no_t(double w0,
   /* t1 and t2 are parameters in the equation of
    * two lines.  For line segments, 0 <= t1 <= 1
    * and 0 <= t2 <= 1.  These are given as t and T
-   * in GHS diss. page 181. or BSM page 148.  
-   * O'Rourke uses r and s as the parameters, which 
+   * in GHS diss. page 181. or BSM page 148.
+   * O'Rourke uses r and s as the parameters, which
    * is probably more standard.
    */
   *t1 = 0;
@@ -600,7 +600,7 @@ lns_new_no_goto_no_t(double w0,
 
          kk3 += 1;
          if (kk3 == 2) {
-   	      kk3 = 0;
+           kk3 = 0;
          }
 
          return kk3;
@@ -622,15 +622,15 @@ lns_new_no_goto_no_t(double w0,
 
   *t2 = d2/d0;
    if ( (*t2 < -0.0000001) || (*t2 > 1.0000001) ) {
-      return 0; 
+      return 0;
    }
 
-   return 1; 
+   return 1;
 }
 
 
 
-int 
+int
 dc_line_intersection(double w0, double * j1, double * j2, double * t1, double * t2) {
 
      return lns_new_no_goto_no_t(w0,j1[1],j1[2],j1[3],j1[4],j2[1],j2[2],j2[3],j2[4],t1,t2);
