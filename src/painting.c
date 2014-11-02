@@ -13,7 +13,6 @@ struct _painting {
 };
 
 
-
 Painting *
 painting_new(void) {
 
