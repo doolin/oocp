@@ -24,9 +24,6 @@ main(int argc, char ** argv) {
   struct _snafu snafu;
   /** Composition */
   snafu.foo.bar = 1;
-
   printf("snafu.foo.bar: %d\n", snafu.foo.bar);
-
   exit (0);
-
 }

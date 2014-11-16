@@ -30,8 +30,8 @@ painting_delete(Painting * p) {
    //if (p->artist_name != NULL) free(p->artist_name);
    //if (p->painting_name != NULL) free(p->owner_name);
    //if (p->owner_name != NULL) free(p->painting_name);
-   //memset(p,0xdd,sizeof(Painting));
-   //free(p);
+   memset(p,0xdd,sizeof(Painting));
+   free(p);
 }
 
 char *
