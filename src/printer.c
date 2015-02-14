@@ -1,5 +1,19 @@
 #include<stdio.h>
 
+/**
+ * One of the useful things about Java and many scripting languages
+ * such as Python or Ruby is having the ability to print something
+ * about each class and object. C of course doesn't have this, but
+ * adding such capability is not difficult. A first step is defining
+ * a generalized way to print.
+ */
+
+/** TODO:
+ * 1. set up new and and delete functions
+ * 2. ensure memory is shredded and actually freed, use valgrind
+ * 3. Specialize printing for just stdout.
+ */
+
 typedef struct _object Object;
 
 #ifndef OOCP_PRINTFUNC
