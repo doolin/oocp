@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
 /**
  * One of the useful things about Java and many scripting languages
@@ -32,16 +34,23 @@ typedef void (*Printer)   (Object * o,
 #endif
 
 
-#define object_print(o,p,s)   ((Object*)o)->print ((Object*)o,(PrintFunc)p,s);
-
 struct _object {
-  Printer print;
+  Printer printer;
 };
+
+#define object_print(o,p,s)   ((Object*)o)->printer ((Object*)o,(PrintFunc)p,s);
 
 typedef struct _thing {
   Object o;
   int value;
 } Thing;
+
+Thing *
+thing_new() {
+  Thing * t = (Thing*)malloc(sizeof(Thing));
+  memset((void*)t, 0xda, sizeof(Thing));
+  return t;
+}
 
 void
 thing_printer(Object * o, PrintFunc print, void * stream) {
@@ -54,7 +63,7 @@ int
 main(int atgc, char ** argv) {
 
   Thing t;
-  t.o.print = thing_printer;
+  t.o.printer = thing_printer;
   t.value = 1;
 
   object_print(&t, fprintf, stdout);
